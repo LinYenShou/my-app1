@@ -1,17 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
+import AItest from './AItest';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// 主 React Root（綁定到 #root）
+const rootEl = document.getElementById('root');
+if (rootEl) {
+  const root = createRoot(rootEl);
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// 額外 AI Chat Root（綁定到 #react-root，如果存在於 HTML 中）
+const chatEl = document.getElementById('react-root');
+if (chatEl) {
+  const chatRoot = createRoot(chatEl);
+  chatRoot.render(
+    <React.StrictMode>
+      <AItest />
+    </React.StrictMode>
+  );
+}
+
+// （可選）效能測試
 reportWebVitals();

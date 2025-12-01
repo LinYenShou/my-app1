@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
         /* CSS 變數：定義整個網站的配色和字體 */
@@ -62,36 +61,36 @@
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0 20px; /* 移除上下 padding，由 section 自己控制 */
+            padding: 0 20px;
         }
 
         /* 導航列樣式 */
         nav {
-            background-color: rgba(0, 0, 0, 0.9); /* 更不透明的黑色背景 */
+            background-color: rgba(0, 0, 0, 0.9);
             padding: 15px 0;
             border-bottom: 2px solid var(--color-blue-accent);
-            position: fixed; /* 固定在頂部 */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-            transform: translateY(-100%); /* 初始隱藏在視窗上方 */
-            transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* 滑入動畫 */
-            opacity: 0; /* 初始透明 */
+            transform: translateY(-100%);
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
         }
 
-        nav.show { /* 通過 JavaScript 添加 'show' 類來顯示導航列 */
+        nav.show { 
             transform: translateY(0);
             opacity: 1;
         }
 
         nav .nav-links {
-            max-width: 800px; /* 限制導航連結寬度 */
+            max-width: 800px;
             margin: 0 auto;
-            display: flex; /* 使用 Flexbox 讓連結水平排列 */
-            justify-content: center; /* 水平居中 */
-            gap: 20px; /* 連結間距 */
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
         nav a {
@@ -108,7 +107,7 @@
             background-color: var(--color-blue-accent);
             color: white;
             text-decoration: none;
-            transform: scale(1.05); /* 點擊/懸停時輕微放大 */
+            transform: scale(1.05);
         }
 
         /* 頁首樣式 - 首頁大圖區塊 */
@@ -116,53 +115,78 @@
             background-color: #003366;
             background-image: linear-gradient(135deg, #003366 0%, #0056b3 100%);
             color: white;
-            padding: 80px 20px 40px; /* 調整 padding */
-            border-radius: 0 0 15px 15px; /* 底部圓角 */
-            margin-bottom: 0; /* 移除 header 和第一個 section 的間距 */
-            box-shadow: 0 8px 25px rgba(0, 166, 255, 0.3); /* 更明顯的藍色光影 */
-            min-height: 80vh; /* 確保至少佔據大部分視窗高度 */
-            display: flex; /* 使用 Flexbox 垂直居中內容 */
+            padding: 80px 20px 40px;
+            border-radius: 0 0 15px 15px;
+            margin-bottom: 0;
+            box-shadow: 0 8px 25px rgba(0, 166, 255, 0.3);
+            min-height: 80vh;
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            scroll-snap-align: start; /* 滾動捕捉到頂部 */
-            animation: fadeInSlideUp 1.2s ease-out; /* 頁首內容淡入動畫 */
+            scroll-snap-align: start;
+            animation: fadeInSlideUp 1.2s ease-out;
         }
 
         /* 頁首個人照片 - 矩形樣式 */
         header .profile-photo-wrapper {
-            width: 300px; /* 照片寬度 */
-            height: 400px; /* 照片高度 */
+            width: 300px;
+            height: 400px;
             margin-bottom: 25px;
             position: relative;
-            overflow: hidden; /* 確保照片不會超出邊界 */
-            border-radius: 10px; /* 輕微圓角 */
-            border: 3px solid var(--color-blue-primary); /* 藍色邊框 */
-            box-shadow: 0 0 20px rgba(0, 166, 255, 0.8); /* 初始光暈 */
-            animation: pulse-glow 3s infinite alternate; /* 應用呼吸光暈動畫 */
+            overflow: hidden;
+            border-radius: 10px;
+            border: 3px solid var(--color-blue-primary);
+            box-shadow: 0 0 20px rgba(0, 166, 255, 0.8);
+            animation: pulse-glow 3s infinite alternate;
         }
 
         header .profile-photo-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 確保照片填充容器且不變形 */
-            display: block; /* 移除圖片底部的空白 */
+            object-fit: cover;
+            display: block;
         }
 
         header h1 {
             margin: 15px 0 5px;
-            font-size: 3.5em; /* 放大標題 */
+            font-size: 3.5em;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(0, 166, 255, 0.5); /* 標題文字光暈 */
+            text-shadow: 0 0 10px rgba(0, 166, 255, 0.5);
         }
 
         header p {
-            font-size: 1.4em; /* 放大描述文字 */
+            font-size: 1.4em;
             opacity: 0.9;
             color: #C0C0C0;
         }
+
+        /* -------------------------------------- */
+        /* API & React 樣式 */
+        /* -------------------------------------- */
+        .resume-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 166, 255, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
         
-        /* 🚀 新增 CSS 樣式：天氣資訊顯示區塊 */
+        .resume-badge:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        
+        .badge-icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
         .weather-display {
             background-color: rgba(0, 0, 0, 0.4);
             padding: 15px 25px;
@@ -181,65 +205,228 @@
             box-shadow: 0 0 15px rgba(0, 166, 255, 0.2);
         }
 
-        .weather-display i {
-            font-size: 1.5em;
-            color: #FFC300; /* 黃色圖示 */
-        }
-        
-        /* 🚀 新增 CSS 樣式：新聞列表 */
-        .news-feed {
-            margin-top: 20px;
-        }
-
-        .news-feed h4 {
-            font-size: 1.2em;
-            color: var(--color-blue-primary);
-            margin-bottom: 10px;
-        }
-
-        .news-feed ul {
-            padding: 0;
-            list-style-type: none;
-        }
-
-        .news-feed li {
-            background-color: #252525;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
-
-        .news-feed li:hover {
-            background-color: var(--color-blue-accent);
-        }
-        
-        .news-feed a {
-            font-weight: bold;
-            display: block;
-            text-decoration: none;
-            color: var(--color-text-primary);
-        }
-
-        /* 區塊樣式 - 卡片設計 (其餘與您原始碼相同，不再重複) */
+        /* -------------------------------------- */
+        /* 區塊樣式 - 卡片設計 */
+        /* -------------------------------------- */
         section {
             background-color: var(--color-light-bg);
-            padding: 40px; /* 增加 padding */
-            margin: 40px auto; /* 增加區塊間距 */
-            border-radius: 15px; /* 更圓潤的圓角 */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* 更明顯的陰影 */
+            padding: 40px;
+            margin: 40px auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
             max-width: 800px;
             text-align: left;
-            transition: transform 0.4s ease, box-shadow 0.4s ease; /* 轉場時間拉長，更平滑 */
-            min-height: 50vh; /* 確保區塊有一定高度 */
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            min-height: 50vh;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* 垂直居中內容 */
-            scroll-snap-align: start; /* 滾動捕捉到頂部 */
-            opacity: 0; /* 初始隱藏，等待 JS 觸發動畫 */
-            transform: translateY(30px); /* 初始位置略低 */
+            justify-content: center;
+            scroll-snap-align: start;
+            opacity: 0;
+            transform: translateY(30px);
         }
-        /* ... 省略部分重複的 CSS 樣式 ... */
+
+        /* 區塊進入視窗時的動畫 */
+        section.animated {
+            animation: fadeInSlideUp 1s ease-out forwards;
+        }
+        
+        /* 區塊懸停微光效果 */
+        section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 166, 255, 0.4), 0 0 30px rgba(0, 166, 255, 0.2);
+        }
+
+        section h2 {
+            color: var(--color-blue-primary);
+            border-bottom: 2px dashed var(--color-blue-accent);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 2.5em;
+            text-shadow: 0 0 8px rgba(0, 166, 255, 0.3);
+        }
+        
+        /* 列表樣式 - 技能/特點 */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            background-color: #252525;
+            margin-bottom: 12px;
+            padding: 15px 25px;
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            text-align: left;
+            padding-left: 40px;
+        }
+        
+        section:not(#contact):not(#news-api):not(#ai-chat) ul li::before { /* 排除 #contact, #news-api, #ai-chat 的列表 */
+            content: '›';
+            font-family: var(--font-code);
+            color: var(--color-blue-primary);
+            font-weight: bold;
+            font-size: 1.8em;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            line-height: 1;
+        }
+
+        ul li:hover {
+            background-color: #333333;
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(0, 166, 255, 0.2);
+        }
+        
+        /* -------------------------------------- */
+        /* 生活照片區塊樣式 */
+        /* -------------------------------------- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            text-align: center; /* 讓圖片標題居中 */
+        }
+
+        .gallery-item {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 166, 255, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item-caption {
+            padding: 15px;
+            font-size: 0.9em;
+            color: var(--color-text-secondary);
+        }
+
+        /* -------------------------------------- */
+        /* AI Chat 區塊 CSS */
+        /* -------------------------------------- */
+        .chat-window {
+            height: 400px;
+            overflow-y: auto;
+            background-color: #000000;
+            border: 1px solid var(--color-blue-accent);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            line-height: 1.4;
+            animation: fadeInSlideUp 0.5s ease-out;
+        }
+
+        .message.user {
+            background-color: var(--color-blue-primary);
+            color: var(--color-dark-bg);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.ai {
+            background-color: #333333;
+            color: var(--color-text-primary);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .ai-icon {
+            color: var(--color-blue-primary);
+            margin-right: 10px;
+            font-size: 1.2em;
+            min-width: 1.2em;
+        }
+        
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input input {
+            flex-grow: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--color-blue-accent);
+            background-color: #252525;
+            color: var(--color-text-primary);
+            font-size: 1em;
+        }
+
+        .chat-input button {
+            background-color: var(--color-blue-primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .chat-input button:hover {
+            background-color: var(--color-blue-accent);
+        }
+
+        /* 連結樣式 */
+        a {
+            color: var(--color-blue-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* 頁腳樣式 */
+        footer {
+            margin-top: 50px;
+            padding: 25px;
+            background-color: #000000;
+            color: var(--color-text-secondary);
+            border-radius: 8px 8px 0 0;
+            font-size: 0.95em;
+            border-top: 2px solid var(--color-blue-accent);
+            animation: fadeInSlideUp 1s ease-out 0.4s backwards;
+        }
     </style>
 </head>
 <body>
@@ -248,6 +435,7 @@
             <div class="profile-photo-wrapper">
                 <img src="images/mainphoto.jpg" alt="林彥碩個人照片"> </div>
             <h1>林彥碩</h1>
+            
             <div id="react-root" style ="margin-top:20px;"></div>
             
             <div id="weather-root" style ="margin-top:20px;">
@@ -261,7 +449,9 @@
                 <a href="#about">關於我</a>
                 <a href="#specialties">我的特色</a>
                 <a href="#photos">生活照片</a>
-                <a href="#news-api">最新資訊</a> <a href="#contact">聯絡我</a>
+                <a href="#news-api">最新資訊</a>
+                <a href="#ai-chat">AI 對話</a>
+                <a href="#contact">聯絡我</a>
             </div>
         </nav>
         
@@ -318,9 +508,27 @@
             </div>
         </section>
 
+        <section id="ai-chat">
+            <h2>向 Gemini AI 提問</h2>
+            <p>歡迎在這裡與 AI 交流。**目前為前端模擬，如需真實連線請部署後端服務。**</p>
+            
+            <div id="chat-window" class="chat-window">
+                <div class="message ai">
+                    <span class="ai-icon"><i class="fas fa-robot"></i></span>
+                    <span>哈囉！我是這個網站的 AI 助理。您可以問我任何關於**林彥碩**的問題，或者關於科技趨勢的問題！</span>
+                </div>
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="chat-input-field" placeholder="輸入您的問題..." onkeypress="if(event.key === 'Enter') document.getElementById('chat-send-button').click()">
+                <button id="chat-send-button"><i class="fas fa-paper-plane"></i> 發送</button>
+            </div>
+        </section>
+        
         <section id="contact">
             <h2>聯絡我</h2>
             <p>歡迎隨時透過以下方式與我聯繫！</p>
+            
             <ul class="fa-ul">
                 <li><span class="fa-li"><i class="fas fa-envelope" style="color:var(--color-blue-primary);"></i></span>Email: <a href="mailto:413711114h@gapps.ntnu.edu.tw">413711114h@gapps.ntnu.edu.tw</a></li>
                 <li><span class="fa-li"><i class="fab fa-linkedin" style="color:var(--color-blue-primary);"></i></span>LinkedIn: <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit" target="_blank">我的 LinkedIn 個人頁面</a></li>
@@ -334,32 +542,57 @@
     </div>
 
     <script type="text/babel">
-        // React 範例元件（保留原結構）
+        // ----------------------------------------------------
+        // 🚀 React 互動元件：狀態切換徽章 (點擊可切換)
+        // ----------------------------------------------------
         const { useState, useEffect } = React;
 
-        const ResumeBadge = () => {
-            // 由於我們專注於整合 Weather 和 Serp API，此處保持簡化
-            const statusText = "開放學習交流機會";
-            const iconClass = "fas fa-briefcase"; 
+        const InteractiveStatusBadge = () => {
+            const [status, setStatus] = useState({
+                text: "開放學習交流機會",
+                iconClass: "fas fa-briefcase",
+                color: "#00A6FF"
+            });
+
+            const statusList = [
+                { text: "開放學習交流機會", iconClass: "fas fa-briefcase", color: "#00A6FF" },
+                { text: "⚡ 今日專注寫程式", iconClass: "fas fa-code", color: "#FFD700" },
+                { text: "🎮 正在休息中...", iconClass: "fas fa-gamepad", color: "#FF4500" },
+            ];
             
+            const handleBadgeClick = () => {
+                const currentIndex = statusList.findIndex(s => s.text === status.text);
+                const nextIndex = (currentIndex + 1) % statusList.length;
+                setStatus(statusList[nextIndex]);
+            };
+
             return (
-                <div className="resume-badge" style={{backgroundColor: '#00A6FF', boxShadow: '0 4px 15px rgba(0, 166, 255, 0.5)'}}>
-                    <i className={`${iconClass} badge-icon`}></i>
-                    {statusText}
+                <div 
+                    className="resume-badge" 
+                    onClick={handleBadgeClick} 
+                    style={{
+                        backgroundColor: status.color, 
+                        cursor: 'pointer',
+                        boxShadow: `0 4px 15px ${status.color}80` 
+                    }}
+                >
+                    <i className={`${status.iconClass} badge-icon`}></i>
+                    {status.text}
                 </div>
             );
         };
 
         const root = ReactDOM.createRoot(document.getElementById('react-root'));
-        root.render(<ResumeBadge />);
+        root.render(<InteractiveStatusBadge />);
     </script>
     
     <script>
         // ----------------------------------------------------
         // 🚀 API 1: Weather API 整合
         // ----------------------------------------------------
-        const WEATHER_API_KEY = '7df5f3e652f0410b872105211250112'; // 您的金鑰
-        const WEATHER_CITY = 'Taipei'; // 假設位置在台北
+        // WeatherAPI Key: 7df5f3e652f0410b872105211250112
+        const WEATHER_API_KEY = '7df5f3e652f0410b872105211250112'; 
+        const WEATHER_CITY = 'Taipei'; 
         const weatherRoot = document.getElementById('weather-root');
         
         async function fetchWeather() {
@@ -377,11 +610,11 @@
                 const conditionText = data.current.condition.text;
                 const iconUrl = data.current.condition.icon;
                 
-                // 顯示天氣資訊
                 weatherRoot.innerHTML = `
                     <div class="weather-display">
-                        <img src="https:${iconUrl}" alt="${conditionText}" style="width:50px; height:50px;">
+                        <i class="fas fa-location-dot" style="color:var(--color-blue-primary);"></i>
                         <span>${location} 即時天氣：</span>
+                        <img src="https:${iconUrl}" alt="${conditionText}" style="width:30px; height:30px;">
                         <span>${tempC}°C</span>
                         <span style="color:#FFF;">|</span>
                         <span>${conditionText}</span>
@@ -389,30 +622,37 @@
                 `;
             } catch (error) {
                 console.error("獲取天氣資訊出錯:", error);
-                weatherRoot.innerHTML = `<p style="color:red;">天氣資訊載入失敗。</p>`;
+                weatherRoot.innerHTML = `<p style="color:red;">天氣資訊載入失敗，請檢查金鑰或網路。</p>`;
             }
         }
 
         // ----------------------------------------------------
-        // 🚀 API 2: Serp API 整合 (用於 Google News 搜尋)
+        // 🚀 API 2: Serp API 整合 (新聞資訊)
         // ----------------------------------------------------
-        const SERP_API_KEY = 'fb13aee3bf83990b933394082ac6e5673fadae6d8f5cbf9e45d7fd57e990781f'; // 您的金鑰
+        // SerpAPI Key: fb13aee3bf83990b933394082ac6e5673fadae6d8f5cbf9e45d7fd57e990781f
+        const SERP_API_KEY = 'fb13aee3bf83990b933394082ac6e5673fadae6d8f5cbf9e45d7fd57e990781f'; 
         const newsRoot = document.getElementById('news-feed-root');
         
         async function fetchNews() {
-            // 查詢最新的台灣科技新聞
             const query = '台灣科技新聞';
             const url = `https://serpapi.com/search.json?engine=google_news&q=${encodeURIComponent(query)}&gl=tw&hl=zh-tw&api_key=${SERP_API_KEY}`;
             
             try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`新聞資訊載入失敗: ${response.statusText}`);
+                var newsResults;
+                if (window.location.protocol !== 'file:') {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`新聞資訊載入失敗: ${response.statusText}`);
+                    }
+                    const data = await response.json();
+                    newsResults = data.news_results ? data.news_results.slice(0, 5) : [];
+                } else {
+                    newsResults = [
+                        { title: "無法連線：請部署到伺服器以測試SerpAPI", link: "#", source: "系統提示", date: "Now" },
+                        { title: "科技業傳聞：晶片大廠將推出革命性新產品", link: "#", source: "科技日報", date: "1小時前" },
+                        { title: "AI 算力需求持續攀升，各國積極投入建設", link: "#", source: "國際新聞", date: "2天前" },
+                    ];
                 }
-                const data = await response.json();
-                
-                // 取出前 5 條新聞
-                const newsResults = data.news_results ? data.news_results.slice(0, 5) : [];
                 
                 if (newsResults.length === 0) {
                     newsRoot.innerHTML = `<p>目前沒有最新的科技新聞。</p>`;
@@ -424,7 +664,7 @@
                     newsHtml += `
                         <li>
                             <a href="${item.link}" target="_blank">
-                                ${item.title}
+                                <i class="fas fa-newspaper" style="color:#FFF;"></i> ${item.title}
                                 <br>
                                 <span style="font-size: 0.8em; color: var(--color-text-secondary);">${item.source} - ${item.date}</span>
                             </a>
@@ -437,8 +677,79 @@
 
             } catch (error) {
                 console.error("獲取新聞資訊出錯:", error);
-                newsRoot.innerHTML = `<p style="color:red;">最新科技新聞載入失敗。</p>`;
+                newsRoot.innerHTML = `<p style="color:red;">最新科技新聞載入失敗，請檢查金鑰或 CORS 問題。</p>`;
             }
+        }
+        
+        // ----------------------------------------------------
+        // 🚀 AI Chat 互動邏輯 (前端模擬)
+        // ----------------------------------------------------
+        function setupAIChat() {
+            const chatWindow = document.getElementById('chat-window');
+            const inputField = document.getElementById('chat-input-field');
+            const sendButton = document.getElementById('chat-send-button');
+
+            function scrollToBottom() {
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', sender);
+                
+                if (sender === 'ai') {
+                    messageDiv.innerHTML = `<span class="ai-icon"><i class="fas fa-robot"></i></span><span>${text}</span>`;
+                } else {
+                    messageDiv.textContent = text;
+                }
+                
+                chatWindow.appendChild(messageDiv);
+                scrollToBottom();
+            }
+
+            function getMockAIResponse(userMessage) {
+                userMessage = userMessage.toLowerCase();
+                
+                if (userMessage.includes('林彥碩') || userMessage.includes('你認識')) {
+                    return "我認識林彥碩！他目前就讀國立臺灣師範大學科技系，同時還在努力雙主修電機系。他對數學和科技研究都很有熱忱。";
+                } else if (userMessage.includes('興趣')) {
+                    return "林彥碩的興趣包括在家玩遊戲、偶爾與家人朋友出門踏青或逛街。";
+                } else if (userMessage.includes('api') || userMessage.includes('程式')) {
+                    return "您對 API 整合有興趣嗎？如果這個網站部署了後端，我們就能進行真正的 AI 對話。他目前的主要技能是電子工程與基礎程式設計！";
+                } else {
+                    const responses = [
+                        "這是一個很好的問題！由於目前是前端模擬，我只能給您一個樣板回覆。請嘗試問我關於林彥碩的資訊。",
+                        "我正在思考您的問題，請稍等... (模擬延遲)",
+                        "感謝您的提問！如果這是實際的 AI 服務，我會為您提供更精準的答案。",
+                        "您對什麼領域的科技趨勢感興趣呢？"
+                    ];
+                    return responses[Math.floor(Math.random() * responses.length)];
+                }
+            }
+            
+            function sendMessage() {
+                const message = inputField.value.trim();
+                if (message === '') return;
+
+                addMessage(message, 'user');
+                inputField.value = '';
+                sendButton.disabled = true;
+
+                setTimeout(() => {
+                    const aiResponse = getMockAIResponse(message);
+                    addMessage(aiResponse, 'ai');
+                    sendButton.disabled = false;
+                }, 1000); 
+            }
+
+            sendButton.addEventListener('click', sendMessage);
+            // 允許按 Enter 鍵發送
+            inputField.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // 防止換行
+                    sendMessage();
+                }
+            });
         }
 
 
@@ -446,53 +757,48 @@
         // 頁面滾動與動畫控制
         // ----------------------------------------------------
         document.addEventListener('DOMContentLoaded', () => {
-            // 載入 API 資料
+            // 初始載入 API 資料
             fetchWeather();
             fetchNews(); 
+            // 設置 AI Chat 互動
+            setupAIChat(); 
 
-            // 以下是您原始碼中的滾動動畫和導航控制邏輯
+            // 滾動動畫和導航控制邏輯
             const sections = document.querySelectorAll('section');
             const nav = document.getElementById('mainNav');
-            let lastScrollY = window.scrollY; // 記錄上一次捲動位置
 
             const observerOptions = {
-                root: null, // 視窗為根元素
+                root: null, 
                 rootMargin: '0px',
-                threshold: 0.1 // 區塊有 10% 進入視窗時觸發
+                threshold: 0.1 
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('animated'); // 加入動畫類別
-                        // observer.unobserve(entry.target); // 如果只需動畫一次，可以取消觀察
+                        entry.target.classList.add('animated'); 
                     } else {
-                        // 如果區塊離開視窗，可以移除 animated 類別，以便下次進入時再次動畫
                         entry.target.classList.remove('animated');
                     }
                 });
             }, observerOptions);
 
             sections.forEach(section => {
-                observer.observe(section); // 觀察每個 section
+                observer.observe(section); 
             });
 
             // 控制導航列的顯示/隱藏
             window.addEventListener('scroll', () => {
-                // 如果是首頁 (header) 正在顯示，則隱藏導航列
                 const header = document.querySelector('header');
                 const headerRect = header.getBoundingClientRect();
 
-                if (headerRect.bottom > 100) { // 當 header 大部分在視窗中時
+                if (headerRect.bottom > 100) { 
                     nav.classList.remove('show');
                 } else {
                     nav.classList.add('show');
                 }
-
-                lastScrollY = window.scrollY;
             });
 
-            // 初始載入時檢查導航列狀態
             window.dispatchEvent(new Event('scroll'));
         });
     </script>
